@@ -3,9 +3,10 @@
 ## Integrantes
 
 Vitor Hugo de Oliveira Paludetto; RA: 21025216
-Victor Cristiano do Nascimento Silva
 
-[Link do vídeo]()
+Victor Cristiano do Nascimento Silva; Ra: 21080416
+
+[Link do vídeo](https://youtu.be/jF5dCNl0ISI)
 
 ## Como rodar o projeto
 
