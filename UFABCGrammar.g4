@@ -58,7 +58,12 @@ programa	: 'programa' ID  { program.setName(_input.LT(-1).getText());
 			;
 						
 declaravar	: 'declare' { currentDecl.clear(); } 
-               ID  { currentDecl.add(new Var(_input.LT(-1).getText()));}
+               ID  { 
+               	if (isDeclared(_input.LT(-1).getText())) {
+                       throw new UFABCSemanticException("Variable Already Declared: "+_input.LT(-1).getText());
+                   }
+               	currentDecl.add(new Var(_input.LT(-1).getText()));
+               }
                ( VIRG ID                
               		 { currentDecl.add(new Var(_input.LT(-1).getText()));}
                )*	 
@@ -67,6 +72,8 @@ declaravar	: 'declare' { currentDecl.clear(); }
                'number' {currentType = Types.NUMBER;}
                |
                'text' {currentType = Types.TEXT;}
+               |
+               'double' {currentType = Types.REALNUMBER;}
                ) 
                
                { updateType(); } 
@@ -203,7 +210,7 @@ OP			: '+' | '-' | '*' | '/'
 OP_AT	    : ':='
 		    ;
 		    
-OPREL       : '>' | '<' | '>=' | '<= ' | '<>' | '=='
+OPREL       : '>' | '<' | '>=' | '<= ' | '!=' | '=='
 			;		    			
 			
 ID			: [a-z] ( [a-z] | [A-Z] | [0-9] )*		
@@ -215,7 +222,7 @@ NUM			: [0-9]+ ('.' [0-9]+ )?
 VIRG		: ','
 			;
 						
-PV			: ';'
+PV			: '.'
             ;			
             
 AP			: '('

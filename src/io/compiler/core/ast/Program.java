@@ -42,8 +42,10 @@ public class Program {
 			if (var.getType() == Types.NUMBER) {
 				str.append("    int ");
 			}
-			else {
+			else if (var.getType() == Types.TEXT){
 				str.append("    String ");				
+			} else {
+				str.append("    double ");
 			}
 			str.append(var.getId()+";\n");
 		}

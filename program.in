@@ -1,26 +1,34 @@
 programa meuPrograma
-	declare a,b: number;
-	declare x,y: text;
+	declare a,b, c: number.
+	declare x,y: text.
+	declare d: double.
 	inicio
-		escreva("Hello World");
-		escreva("Fim do programa");
-		leia(a);
-		leia(b);
-		escreva(a);
+		escreva("Hello World").
+		escreva("Fim do programa").
+		leia(a).
+		leia(b).
+		escreva(a).
 		se (a > 5) entao
-			escreva("maior que 5");
+			escreva("maior que 5").
 		senao
-		    escreva("menor que 5");
+		    escreva("menor que 5").
 		fimse
 		
-		escreva("oi agora vamos testar outro");
+		se (3 != 5) entao
+			escreva("diferente").
+		senao
+			escreva("igual").
+		fimse
+		
+		escreva("oi agora vamos testar outro").
 		se (b >= 0) entao
-		   escreva("b positivo");
+		   escreva("b positivo").
 		senao
-		   escreva("b negativo");
+		   escreva("b negativo").
 		fimse
 		
-		
+		d := 3 + 5 / 2.
+		escreva(c).
 	fim
 fimprog
 
