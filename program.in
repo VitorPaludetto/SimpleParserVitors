@@ -1,5 +1,6 @@
 programa meuPrograma
 	declare a,b, c: number.
+	declare d: text.
 	inicio
 		escreva("Hello World").
 		escreva("Fim do programa").
@@ -24,12 +25,14 @@ programa meuPrograma
 		senao
 		   escreva("b negativo").
 		fimse
-		enquanto (a > 5) entao
-			escreva("while").
-		fimenquanto
 		c := 3 + 5 * 2.
 		escreva(c).
-		
+		enquanto (a > 5) entao
+			escreva("while").
+			a := a - 1.
+		fimenquanto
+		d := "o".
+		escreva(d).
 	fim
 fimprog
 

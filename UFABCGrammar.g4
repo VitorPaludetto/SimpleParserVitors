@@ -104,7 +104,9 @@ cmdIF		: 'se'  { stack.push(new ArrayList<Command>());
                expr
                OPREL  { strExpr += _input.LT(-1).getText(); }
                expr 
-               FP  { currentIfCommand.setExpression(strExpr); }
+               FP  { currentIfCommand.setExpression(strExpr);
+               		strExpr = ""; 
+               }
                'entao'  
                comando+                
                { 

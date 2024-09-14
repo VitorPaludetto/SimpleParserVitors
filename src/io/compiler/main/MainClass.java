@@ -37,13 +37,13 @@ public class MainClass {
 			/* vou deixar aqui a geracao do codigo do programa*/
 			Program program = parser.getProgram();
 			
-			System.out.println(program.generateTarget());
 			try {
 				File f = new File(program.getName()+".java");
 				FileWriter fr = new FileWriter(f);
 				PrintWriter pr = new PrintWriter(fr);
 				pr.println(program.generateTarget());
 				pr.close();
+				System.out.println("OK - Java file generated");
 			}
 			catch (IOException ex) {
 				ex.printStackTrace();
@@ -53,7 +53,7 @@ public class MainClass {
 		}
 		catch(Exception ex) {
 			System.err.println("Error: "+ex.getMessage());
-			//ex.printStackTrace();
+			ex.printStackTrace();
 		}
 	}
 }

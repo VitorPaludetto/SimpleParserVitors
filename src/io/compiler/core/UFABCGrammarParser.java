@@ -492,7 +492,9 @@ public class UFABCGrammarParser extends Parser {
 			expr();
 			setState(78);
 			match(FP);
-			 currentIfCommand.setExpression(strExpr); 
+			 currentIfCommand.setExpression(strExpr);
+			               		strExpr = ""; 
+			               
 			setState(80);
 			match(T__9);
 			setState(82); 
@@ -638,9 +640,7 @@ public class UFABCGrammarParser extends Parser {
 			setState(116);
 			match(T__13);
 
-			               		System.out.println(stack.toString());
 			               		whileCmd.setCommandList(stack.pop()); 
-			               		System.out.println(stack.toString());
 			                    stack.peek().add(whileCmd);
 			               
 			}
@@ -705,8 +705,6 @@ public class UFABCGrammarParser extends Parser {
 			setState(124);
 			match(PV);
 
-			                 System.out.println("Left  Side Expression Type = "+leftType);
-			                 System.out.println("Right Side Expression Type = "+rightType);
 			                 if (leftType.getValue() < rightType.getValue()){
 			                    throw new UFABCSemanticException("Type Mismatchig on Assignment");
 			                 }
@@ -925,12 +923,10 @@ public class UFABCGrammarParser extends Parser {
 				                    symbolTable.get(_input.LT(-1).getText()).setUsed(true);
 				                    if (rightType == null){
 				                       rightType = symbolTable.get(_input.LT(-1).getText()).getType();
-				                       //System.out.println("Encontrei pela 1a vez uma variavel = "+rightType);
 				                    }   
 				                    else{
 				                       if (symbolTable.get(_input.LT(-1).getText()).getType().getValue() > rightType.getValue()){
 				                          rightType = symbolTable.get(_input.LT(-1).getText()).getType();
-				                          //System.out.println("Ja havia tipo declarado e mudou para = "+rightType);
 				                          
 				                       }
 				                    }
@@ -944,12 +940,10 @@ public class UFABCGrammarParser extends Parser {
 				match(NUM);
 				  if (rightType == null) {
 							 				rightType = Types.NUMBER;
-							 				//System.out.println("Encontrei um numero pela 1a vez "+rightType);
 							            }
 							            else{
 							                if (rightType.getValue() < Types.NUMBER.getValue()){			                    			                   
 							                	rightType = Types.NUMBER;
-							                	//System.out.println("Mudei o tipo para Number = "+rightType);
 							                }
 							            }
 							         
@@ -962,12 +956,9 @@ public class UFABCGrammarParser extends Parser {
 				match(TEXTO);
 				  if (rightType == null) {
 							 				rightType = Types.TEXT;
-							 				//System.out.println("Encontrei pela 1a vez um texto ="+ rightType);
 							            }
 							            else{
 							                if (rightType.getValue() < Types.TEXT.getValue()){			                    
-							                	rightType = Types.TEXT;
-							                	//System.out.println("Mudei o tipo para TEXT = "+rightType);
 							                	
 							                }
 							            }

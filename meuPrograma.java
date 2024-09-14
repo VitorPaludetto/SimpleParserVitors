@@ -6,6 +6,7 @@ public class meuPrograma {
 		int a;
 		int b;
 		int c;
+		String d;
 		System.out.println("Hello World");
 		System.out.println("Fim do programa");
 		a = _scTrx.nextInt();
@@ -27,10 +28,13 @@ public class meuPrograma {
 		} else {
 			System.out.println("b negativo");
 		}
-		while (a > 5) {
-			System.out.println("while");
-		}
 		c = 3 + 5 * 2;
 		System.out.println(c);
+		while (a > 5) {
+			System.out.println("while");
+			a = a - 1;
+		}
+		d = "o";
+		System.out.println(d);
 	}
 }
