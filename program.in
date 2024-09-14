@@ -27,7 +27,7 @@ programa meuPrograma
 		enquanto (a > 5) entao
 			escreva("while").
 		fimenquanto
-		c := 3 + 5.
+		c := 3 + 5 * 2.
 		escreva(c).
 		
 	fim

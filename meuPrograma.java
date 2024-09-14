@@ -30,7 +30,7 @@ public class meuPrograma {
 		while (a > 5) {
 			System.out.println("while");
 		}
-		c = 3 + 5;
+		c = 3 + 5 * 2;
 		System.out.println(c);
 	}
 }
