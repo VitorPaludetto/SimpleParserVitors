@@ -1,0 +1,13 @@
+!SESSION 2024-09-13 23:56:05.041 -----------------------------------------------
+eclipse.buildId=4.33.0.20240905-0613
+java.version=22.0.2
+java.vendor=Homebrew
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=en_BR
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/vitor/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -product org.eclipse.epp.package.java.product -keyring /Users/vitor/.eclipse_keyring -data /Users/vitor/Documents/ufabc/SimpleParserVitors
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-13 23:56:06.365
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-13 23:56:07.412
+!MESSAGE Logback config file: /Users/vitor/Documents/ufabc/SimpleParserVitors/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.6.1.20240411-1122.xml
