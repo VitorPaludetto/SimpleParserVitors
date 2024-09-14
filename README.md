@@ -1,14 +1,15 @@
-# Simple Parser
+# SimpleParserVitors
 
-Pequeno exemplo de um parser usando ANTLR. Nossa gramática permite:
-- declarar variáveis de 2 tipos (NUMBER ou TEXT)
-- expressões aritméticas com 4 operadores + - * /
-- não tratamos precedência (ainda)
+## Integrantes
 
+Vitor Hugo de Oliveira Paludetto; RA: 21025216
+Victor Cristiano do Nascimento Silva
 
-## como usar
+[Link do vídeo]()
 
-- você precisa baixa o Antlr no site oficial (https://www.antlr.org/download/antlr-4.13.2-complete.jar)
-- você deve referenciar este JAR como biblioteca do seu projeto
-- para gerar os arquivos JAVA a partir do arquivo G4, o comando é este:
-``` java -cp antlr-4.13.2-complete.jar org.antlr.v4.Tool [sua gramatica] -o [pasta onde voce quer gerar os arquivos] -package [nome do pacote java que ira no cabecalho]```
+## Como rodar o projeto
+
+- Baixar o Antlr no site oficial [antlr.org](https://www.antlr.org/download/antlr-4.13.2-complete.jar)
+- Adicionar o JAR ao BuildPath do projeto
+- Para gerar os arquivos JAVA a partir do arquivo G4 executar:
+  `java -cp antlr-4.13.2-complete.jar org.antlr.v4.Tool UFABCGrammar.g4 -o src/io/compiler/core -package io.compiler.core`

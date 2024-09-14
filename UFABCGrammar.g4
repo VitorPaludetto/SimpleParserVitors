@@ -140,9 +140,7 @@ cmdWhile    : 'enquanto'  { stack.push(new ArrayList<Command>());
                 'entao'
                 comando+
                'fimenquanto' {
-               		System.out.println(stack.toString());
                		whileCmd.setCommandList(stack.pop()); 
-               		System.out.println(stack.toString());
                     stack.peek().add(whileCmd);
                }
              ;
@@ -163,8 +161,6 @@ cmdAttrib   : ID { if (!isDeclared(_input.LT(-1).getText())) {
               PV
               
               {
-                 System.out.println("Left  Side Expression Type = "+leftType);
-                 System.out.println("Right Side Expression Type = "+rightType);
                  if (leftType.getValue() < rightType.getValue()){
                     throw new UFABCSemanticException("Type Mismatchig on Assignment");
                  }
@@ -206,35 +202,28 @@ termo		: ID  { if (!isDeclared(_input.LT(-1).getText())) {
                     symbolTable.get(_input.LT(-1).getText()).setUsed(true);
                     if (rightType == null){
                        rightType = symbolTable.get(_input.LT(-1).getText()).getType();
-                       //System.out.println("Encontrei pela 1a vez uma variavel = "+rightType);
                     }   
                     else{
                        if (symbolTable.get(_input.LT(-1).getText()).getType().getValue() > rightType.getValue()){
                           rightType = symbolTable.get(_input.LT(-1).getText()).getType();
-                          //System.out.println("Ja havia tipo declarado e mudou para = "+rightType);
                           
                        }
                     }
                   }   
 			| NUM    {  if (rightType == null) {
 			 				rightType = Types.NUMBER;
-			 				//System.out.println("Encontrei um numero pela 1a vez "+rightType);
 			            }
 			            else{
 			                if (rightType.getValue() < Types.NUMBER.getValue()){			                    			                   
 			                	rightType = Types.NUMBER;
-			                	//System.out.println("Mudei o tipo para Number = "+rightType);
 			                }
 			            }
 			         }
 			| TEXTO  {  if (rightType == null) {
 			 				rightType = Types.TEXT;
-			 				//System.out.println("Encontrei pela 1a vez um texto ="+ rightType);
 			            }
 			            else{
 			                if (rightType.getValue() < Types.TEXT.getValue()){			                    
-			                	rightType = Types.TEXT;
-			                	//System.out.println("Mudei o tipo para TEXT = "+rightType);
 			                	
 			                }
 			            }
