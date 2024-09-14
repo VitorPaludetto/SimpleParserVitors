@@ -73,6 +73,18 @@ public class UFABCGrammarBaseListener implements UFABCGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCmdWhile(UFABCGrammarParser.CmdWhileContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCmdWhile(UFABCGrammarParser.CmdWhileContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCmdAttrib(UFABCGrammarParser.CmdAttribContext ctx) { }
 	/**
 	 * {@inheritDoc}

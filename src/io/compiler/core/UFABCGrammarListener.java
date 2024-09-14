@@ -56,6 +56,16 @@ public interface UFABCGrammarListener extends ParseTreeListener {
 	 */
 	void exitCmdIF(UFABCGrammarParser.CmdIFContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link UFABCGrammarParser#cmdWhile}.
+	 * @param ctx the parse tree
+	 */
+	void enterCmdWhile(UFABCGrammarParser.CmdWhileContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link UFABCGrammarParser#cmdWhile}.
+	 * @param ctx the parse tree
+	 */
+	void exitCmdWhile(UFABCGrammarParser.CmdWhileContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link UFABCGrammarParser#cmdAttrib}.
 	 * @param ctx the parse tree
 	 */

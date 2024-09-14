@@ -93,6 +93,7 @@ comando     :  cmdAttrib
 			|  cmdLeitura
 			|  cmdEscrita
 			|  cmdIF
+			|  cmdWhile
 			;
 			
 cmdIF		: 'se'  { stack.push(new ArrayList<Command>());
@@ -122,14 +123,43 @@ cmdIF		: 'se'  { stack.push(new ArrayList<Command>());
                }  			   
 			;
 			
+cmdWhile    : 'enquanto'  { stack.push(new ArrayList<Command>());
+                            strExpr = "";
+                            WhileCommand whileCmd = new WhileCommand();
+                          } 
+               AP 
+               expr 
+               OPREL { strExpr += _input.LT(-1).getText(); } 
+               expr 
+               FP  { 
+                    
+                    whileCmd.setExpression(strExpr);
+                    strExpr = ""; 
+                    
+                  } 
+                'entao'
+                comando+
+               'fimenquanto' {
+               		System.out.println(stack.toString());
+               		whileCmd.setCommandList(stack.pop()); 
+               		System.out.println(stack.toString());
+                    stack.peek().add(whileCmd);
+               }
+             ;
+			
 cmdAttrib   : ID { if (!isDeclared(_input.LT(-1).getText())) {
                        throw new UFABCSemanticException("Undeclared Variable: "+_input.LT(-1).getText());
                    }
+                   String varId = _input.LT(-1).getText();
                    symbolTable.get(_input.LT(-1).getText()).setInitialized(true);
                    leftType = symbolTable.get(_input.LT(-1).getText()).getType();
                  }
               OP_AT 
-              expr 
+              expr {
+              	AttribCommand attribCommand = new AttribCommand(varId, strExpr);
+              	stack.peek().add(attribCommand);
+              	strExpr = "";
+              }
               PV
               
               {
@@ -155,8 +185,7 @@ cmdLeitura  : 'leia' AP
 			;
 			
 cmdEscrita  : 'escreva' AP 
-              ( termo  {
-		              	symbolTable.get(_input.LT(-1).getText()).setUsed(true); 
+              ( termo  { 
 		              	Command cmdWrite = new WriteCommand(_input.LT(-1).getText());
 		                stack.peek().add(cmdWrite);
                        } 
