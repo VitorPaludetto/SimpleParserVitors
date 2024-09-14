@@ -5,6 +5,7 @@ public class meuPrograma{
     int a;
     int b;
     int c;
+    double d;
     String x;
     String y;
 System.out.println("Hello World");
@@ -19,6 +20,5 @@ if (a>5) {System.out.println("maior que 5");
 }System.out.println("oi agora vamos testar outro");
 if (b>=0) {System.out.println("b positivo");
 }else {System.out.println("b negativo");
-}System.out.println(c);
-   }
+}   }
 }

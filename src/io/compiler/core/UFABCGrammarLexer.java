@@ -126,6 +126,14 @@ public class UFABCGrammarLexer extends Lexer {
 	    public boolean isDeclared(String id){
 	    	return symbolTable.get(id) != null;
 	    }
+	    
+	    public void checkUnusedVar() {
+	    	for (Var var: symbolTable.values()) {
+	    		if (!var.isUsed()) {
+	    			throw new UFABCSemanticException("Variable "+var.getId()+" declared but not used");
+	    		}
+	    	}
+	    }
 
 
 	public UFABCGrammarLexer(CharStream input) {

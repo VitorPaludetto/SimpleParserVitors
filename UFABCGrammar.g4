@@ -40,6 +40,14 @@ grammar UFABCGrammar;
     public boolean isDeclared(String id){
     	return symbolTable.get(id) != null;
     }
+    
+    public void checkUnusedVar() {
+    	for (Var var: symbolTable.values()) {
+    		if (!var.isUsed()) {
+    			throw new UFABCSemanticException("Variable "+var.getId()+" declared but not used");
+    		}
+    	}
+    }
 }
  
 programa	: 'programa' ID  { program.setName(_input.LT(-1).getText());
@@ -54,6 +62,7 @@ programa	: 'programa' ID  { program.setName(_input.LT(-1).getText());
                {
                   program.setSymbolTable(symbolTable);
                   program.setCommandList(stack.pop());
+                  checkUnusedVar();
                }
 			;
 						
@@ -137,6 +146,7 @@ cmdLeitura  : 'leia' AP
                        throw new UFABCSemanticException("Undeclared Variable: "+_input.LT(-1).getText());
                     }
                     symbolTable.get(_input.LT(-1).getText()).setInitialized(true);
+                    symbolTable.get(_input.LT(-1).getText()).setUsed(true);
                     Command cmdRead = new ReadCommand(symbolTable.get(_input.LT(-1).getText()));
                     stack.peek().add(cmdRead);
                   } 
@@ -145,8 +155,10 @@ cmdLeitura  : 'leia' AP
 			;
 			
 cmdEscrita  : 'escreva' AP 
-              ( termo  { Command cmdWrite = new WriteCommand(_input.LT(-1).getText());
-                         stack.peek().add(cmdWrite);
+              ( termo  {
+		              	symbolTable.get(_input.LT(-1).getText()).setUsed(true); 
+		              	Command cmdWrite = new WriteCommand(_input.LT(-1).getText());
+		                stack.peek().add(cmdWrite);
                        } 
               ) 
               FP PV { rightType = null;}
@@ -162,6 +174,7 @@ termo		: ID  { if (!isDeclared(_input.LT(-1).getText())) {
                     if (!symbolTable.get(_input.LT(-1).getText()).isInitialized()){
                        throw new UFABCSemanticException("Variable "+_input.LT(-1).getText()+" has no value assigned");
                     }
+                    symbolTable.get(_input.LT(-1).getText()).setUsed(true);
                     if (rightType == null){
                        rightType = symbolTable.get(_input.LT(-1).getText()).getType();
                        //System.out.println("Encontrei pela 1a vez uma variavel = "+rightType);

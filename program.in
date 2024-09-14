@@ -28,7 +28,6 @@ programa meuPrograma
 		fimse
 		
 		d := 3 + 5 / 2.
-		escreva(c).
 	fim
 fimprog
 

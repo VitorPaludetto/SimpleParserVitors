@@ -133,6 +133,14 @@ public class UFABCGrammarParser extends Parser {
 	    public boolean isDeclared(String id){
 	    	return symbolTable.get(id) != null;
 	    }
+	    
+	    public void checkUnusedVar() {
+	    	for (Var var: symbolTable.values()) {
+	    		if (!var.isUsed()) {
+	    			throw new UFABCSemanticException("Variable "+var.getId()+" declared but not used");
+	    		}
+	    	}
+	    }
 
 	public UFABCGrammarParser(TokenStream input) {
 		super(input);
@@ -219,6 +227,7 @@ public class UFABCGrammarParser extends Parser {
 
 			                  program.setSymbolTable(symbolTable);
 			                  program.setCommandList(stack.pop());
+			                  checkUnusedVar();
 			               
 			}
 		}
@@ -796,6 +805,7 @@ public class UFABCGrammarParser extends Parser {
 				                    if (!symbolTable.get(_input.LT(-1).getText()).isInitialized()){
 				                       throw new UFABCSemanticException("Variable "+_input.LT(-1).getText()+" has no value assigned");
 				                    }
+				                    symbolTable.get(_input.LT(-1).getText()).setUsed(true);
 				                    if (rightType == null){
 				                       rightType = symbolTable.get(_input.LT(-1).getText()).getType();
 				                       //System.out.println("Encontrei pela 1a vez uma variavel = "+rightType);
